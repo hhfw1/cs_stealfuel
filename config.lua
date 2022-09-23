@@ -7,6 +7,11 @@ CodeStudio = {}
 CodeStudio.FuelType = 'LegacyFuel'  --Your Fuel Sysytem LegacyFuel/ps-fuel or if you have any other add here
 CodeStudio.StealTime = 10    --Time to Steal in seconds
 CodeStudio.RefuellingTime = 10   --Time to Refuel Fuel in seconds
+
+
+---Mini Game--- 
+
+CodeStudio.EnableMiniGame - true   ---Enable Disable Mini Game
 CodeStudio.ExplodeOnFail = true  ---Explode Vehicle on Failing to do mini game
 CodeStudio.RemoveOnFail = true -- Remove Empty Gas Can on Failing to do mini game
 

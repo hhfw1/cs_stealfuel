@@ -23,24 +23,30 @@ RegisterNetEvent('hhfw:client:useStealEmptyFuel', function()
                 disableMouse = false,
                 disableCombat = true,
             }, {}, {}, {}, function()
-                exports['abrp_ui']:Circle(function(success)
-                    if success then
-                        ExecuteCommand('e c')
-                        exports[CodeStudio.FuelType]:SetFuel(veh, 0)
-                        TriggerServerEvent('hhfw:stealfuel:server', fuel)
-                    else
-                        ExecuteCommand('e c')
-                        if CodeStudio.ExplodeOnFail then
-                            QBCore.Functions.Notify("Failed, Engine Caught Fire", "error")
-                            Wait(1600)
-                            AddExplosion(GetEntityCoords(veh), 5, 50.0, true, false, true)
+                if CodeStudio.EnableMiniGame then
+                    exports['abrp_ui']:Circle(function(success)
+                        if success then
+                            ExecuteCommand('e c')
+                            exports[CodeStudio.FuelType]:SetFuel(veh, 0)
+                            TriggerServerEvent('hhfw:stealfuel:server', fuel)
+                        else
+                            ExecuteCommand('e c')
+                            if CodeStudio.ExplodeOnFail then
+                                QBCore.Functions.Notify("Failed, Engine Caught Fire", "error")
+                                Wait(1600)
+                                AddExplosion(GetEntityCoords(veh), 5, 50.0, true, false, true)
+                            end
+                            if CodeStudio.RemoveOnFail then 
+                                TriggerEvent("inventory:client:ItemBox", "empty_can", "remove")
+                                TriggerServerEvent("QBCore:Server:RemoveItem", "empty_can", 1)
+                            end
                         end
-                        if CodeStudio.RemoveOnFail then 
-                            TriggerEvent("inventory:client:ItemBox", "empty_can", "remove")
-                            TriggerServerEvent("QBCore:Server:RemoveItem", "empty_can", 1)
-                        end
-                    end
-                end, circles, seconds)
+                    end, circles, seconds)
+                else
+                    ExecuteCommand('e c')
+                    exports[CodeStudio.FuelType]:SetFuel(veh, 0)
+                    TriggerServerEvent('hhfw:stealfuel:server', fuel)
+                end
             end, function()
                 QBCore.Functions.Notify("Canceled!", "error")
             end)
