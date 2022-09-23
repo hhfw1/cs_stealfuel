@@ -1,3 +1,4 @@
+
 local QBCore = exports['qb-core']:GetCoreObject()
 
 RegisterNetEvent('hhfw:client:useStealEmptyFuel', function()
@@ -95,6 +96,45 @@ function LoadAnimDict(dict)
 			Wait(1)
 		end
 	end
+end
+
+
+if CodeStudio.EnableShops then 
+    CreateThread(function()
+        RequestModel(GetHashKey(CodeStudio.ShopPed))
+        while not HasModelLoaded(GetHashKey(CodeStudio.ShopPed)) do
+            Wait(1)
+        end
+
+        local options = {}
+        local option = { 
+            type = "client",
+            event = "hhfw:mechanic:client:Store",
+            icon = "fas fa-circle",
+            label = 'Open Shop'
+        }
+        table.insert(options, option)
+        for k,v in pairs(CodeStudio.Location) do
+            exports[CodeStudio.Target]:SpawnPed({
+                model = GetHashKey(CodeStudio.ShopPed),
+                coords = v,
+                minusOne = true,
+                freeze = true,
+                invincible = true,
+                blockevents = true,
+                scenario = "WORLD_HUMAN_STAND_IMPATIENT",
+                target = {
+                    options = options,
+                    distance = 3.0 
+                },
+                spawnNow = true,
+            })
+        end
+    end)
+
+    RegisterNetEvent('hhfw:mechanic:client:Store', function()
+        TriggerServerEvent('inventory:server:OpenInventory', "shop", 'fuelshop', CodeStudio.ToolItems)
+    end)
 end
 
 
