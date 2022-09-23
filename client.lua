@@ -11,8 +11,6 @@ RegisterNetEvent('hhfw:client:useStealEmptyFuel', function()
         if #(pos - GetEntityCoords(veh)) > 2.5 then return end
         local fuel = math.floor(exports[CodeStudio.FuelType]:GetFuel(veh))
         if fuel > 1 then
-            local seconds = CodeStudio.Seconds
-            local circles = CodeStudio.Circles
             SetVehicleAlarm(veh, true)
             StartVehicleAlarm(veh)
             SetVehicleAlarmTimeLeft(veh, 30000)
@@ -24,7 +22,9 @@ RegisterNetEvent('hhfw:client:useStealEmptyFuel', function()
                 disableCombat = true,
             }, {}, {}, {}, function()
                 if CodeStudio.EnableMiniGame then
-                    exports['abrp_ui']:Circle(function(success)
+                    local seconds = CodeStudio.Seconds
+                    local circles = CodeStudio.Circles
+                    exports['ps-ui']:Circle(function(success)
                         if success then
                             ExecuteCommand('e c')
                             exports[CodeStudio.FuelType]:SetFuel(veh, 0)

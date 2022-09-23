@@ -1,13 +1,17 @@
-If you purchased this anywhere other than my Tebex page you have purchased a leak and supported thieves.
-
 If you need support I now have a discord available, it helps me keep track of issues and give better support.
 
 https://discord.gg/ESwSKregtt
 
 # INSTALLATION
 
+## Dependancies
+- This script requires `LegacyFuel/ps-fuel` or any other fuel scirpt
+- This script requires `ps-ui` for the minigame to work you can turn this on/off in config
+- This script requires `qb-target` if you want to enable shop
+
+
 ---
-# Item installation
+## Item installation
 - Add the image files from the image folder to your `qb-inventory > html > images` folder
 
 - Add these lines to your qb-core > shared lua under the Items section
