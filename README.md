@@ -2,7 +2,8 @@ If you need support I now have a discord available, it helps me keep track of is
 
 https://discord.gg/ESwSKregtt
 
-Forum : https://forum.cfx.re/t/free-steal-fuel-from-vehicle-w-explosion/4919213</b>
+Forum : https://forum.cfx.re/t/free-steal-fuel-from-vehicle-w-explosion/4919213
+
 Preview :https://www.youtube.com/watch?v=2OfGMR1gM-U
 
 # INSTALLATION
